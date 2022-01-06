@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% load filter_extras %}
+<body>
+<div class="ff" style="margin: 0 auto; width: 960px;">
+
+
+    <h1><a href="/f">INDEX2</a></h1>
+  <form method="get">
+    {{ filtered_persons.form.as_p }}
+    <input type="submit" />
+  </form>
+
+<ul>
+   <h3>по запросу нашлось: {{ filtered_persons.qs.count }} записи из {{ allrec }}</h3>
+</ul>
+    <hr>
+    <table>
+    <tbody>
+    {% for pd in person_page_obj %}
+                <tr>
+                    <td class="col-md-1 text-center">{{ forloop.counter }}</td>
+                    <td class="col-md-2 text-center">{{ pd.nom }}</td>
+                    <td class="col-md-1 text-end">{{ pd.fam|upper }}</td>
+                    <td class="col-md-4 text-start">{{ pd.name|upper }}</td>
+                    <td class="col-md-5 text-start"> {{ pd.fname|upper }}</td>
+                    <td class="col-md-1 text-center">{{ pd.dr|date:"d.m.Y" }}</td>
+                </tr>
+              {% endfor %}
+    </tbody>
+    </table>
+    <hr>
+    <div class="pgn">
+        <span class="step-links">
+            {% if person_page_obj.has_previous %}
+                <a href="{% fil_url 1 'page' request.GET.urlencode %}">&laquo; Начало</a>
+
+                <a href="{% fil_url person_page_obj.previous_page_number 'page' request.GET.urlencode %}">предыдущая</a>
+            {% endif %}
+
+             <span class="current">
+                страница  {{ person_page_obj.number }} из {{ person_page_obj.paginator.num_pages }}
+
+            </span>
+
+            {% if person_page_obj.has_next %}
+                <a href="{% fil_url person_page_obj.next_page_number 'page' request.GET.urlencode %}">следующая</a>
+                <a href="{% fil_url person_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+</body>
+</html>

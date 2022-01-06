@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="ff" style="margin: 0 auto; width: 960px;">
+    В этой статье будет рассмотрена настройка Debian 11 после установки. <br>
+    Мы разберемся с репозиториями и лишними программами, а также рассмотрим несколько основных настроек. <br>
+    После всех манипуляций пользоваться Debian 11 станет гораздо удобнее. <br>
+    <p></p>
+    <p>hi</p>
+
+    <h1>Books</h1>
+  <form method="get">
+    {{ filterset.form.as_p }}
+    <input type="submit" />
+  </form>
+
+<ul>
+    {% for object in object_list.qs %}
+        <li>{{ object }}</li>
+    {% endfor %}
+</ul>
+    <table>
+    <tbody>
+    {% for pd in pds %}
+                <tr>
+                    <td class="col-md-2 text-center">{{ pd.nom }}</td>
+                    <td class="col-md-1 text-end">{{ pd.fam|upper }}</td>
+                    <td class="col-md-4 text-start">{{ pd.name|upper }}</td>
+                    <td class="col-md-5 text-start"> {{ pd.fname|upper }}</td>
+                    <td class="col-md-1 text-center">{{ pd.dr|date:"d.m.Y" }}</td>
+                </tr>
+              {% endfor %}
+    </tbody>
+    </table>
+</div>
+</body>
+</html>
