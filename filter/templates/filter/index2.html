@@ -23,7 +23,6 @@
     <tbody>
     {% for pd in person_page_obj %}
                 <tr>
-                    <td class="col-md-1 text-center">{{ forloop.counter }}</td>
                     <td class="col-md-2 text-center">{{ pd.nom }}</td>
                     <td class="col-md-1 text-end">{{ pd.fam|upper }}</td>
                     <td class="col-md-4 text-start">{{ pd.name|upper }}</td>

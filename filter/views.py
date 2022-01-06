@@ -15,7 +15,7 @@ def show_all_persons_page(request):
     all_reccords = Pd.objects.all().count()
     filtered_persons =  PdFilter(
         request.GET,
-        queryset = Pd.objects.all()
+        queryset = Pd.objects.all().order_by('fam', 'name', 'fname')
     )
     context['allrec'] = all_reccords
     context['filtered_persons'] = filtered_persons
