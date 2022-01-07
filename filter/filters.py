@@ -27,3 +27,10 @@ class PdFilter (django_filters.FilterSet):
     class Meta:
         model = Pd
         fields = [ 'nom', 'fam', 'name', 'fname', 'dr' ]
+
+class BookFilterSet(django_filters.FilterSet):
+    def __init__(self, data, *args, **kwargs):
+        data = data.copy()
+        data.setdefault('format', 'paperback')
+        data.setdefault('order', '-added')
+        super().__init__(data, *args, **kwargs)

@@ -4,12 +4,6 @@ from django.core.paginator import Paginator
 from filter.models import Pd
 from .filters import *
 # Create your views here.
-class PdList(ListView):
-    model = Pd
-    template_name = 'filter/index.html'
-    context_object_name = 'pds'
-
-
 def show_all_persons_page(request):
     context = {}
     all_reccords = Pd.objects.all().count()
@@ -20,12 +14,20 @@ def show_all_persons_page(request):
     context['allrec'] = all_reccords
     context['filtered_persons'] = filtered_persons
 
-    paginated_filtered_persons = Paginator(filtered_persons.qs, 20)
+    paginated_filtered_persons = Paginator(filtered_persons.qs, 15)
     page_number = request.GET.get('page')
     person_page_obj = paginated_filtered_persons.get_page(page_number)
 
     context['person_page_obj'] = person_page_obj
     return render(request,'filter/index2.html',context=context)
+
+'''
+class PdList(ListView):
+    model = Pd
+    template_name = 'filter/index.html'
+    context_object_name = 'pds'
+
+'''
 
 
 class FilteredListView(ListView):
@@ -48,5 +50,5 @@ class FilteredListView(ListView):
         return context
 
 class BookListView(FilteredListView):
-    filterset_class = PdFilter
+    #filterset_class = PdFilter
     pagination_by = 30

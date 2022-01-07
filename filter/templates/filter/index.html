@@ -12,14 +12,14 @@
     <p></p>
     <p>hi</p>
 
-    <h1>Books</h1>
-  <form method="get">
+  <h1>Books</h1>
+  <form action="" method="get">
     {{ filterset.form.as_p }}
     <input type="submit" />
   </form>
 
 <ul>
-    {% for object in object_list.qs %}
+    {% for object in object_list %}
         <li>{{ object }}</li>
     {% endfor %}
 </ul>
