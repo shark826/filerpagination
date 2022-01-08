@@ -14,7 +14,7 @@ def show_all_persons_page(request):
     context['allrec'] = all_reccords
     context['filtered_persons'] = filtered_persons
 
-    paginated_filtered_persons = Paginator(filtered_persons.qs, 15)
+    paginated_filtered_persons = Paginator(filtered_persons.qs, 25)
     page_number = request.GET.get('page')
     person_page_obj = paginated_filtered_persons.get_page(page_number)
 
